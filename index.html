@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>page-Abdulwahid Hussein</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles and Variables */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #1a5fb4 0%, #2ec27e 100%);
+            --secondary-gradient: linear-gradient(135deg, #2ec27e 0%, #1a5fb4 100%);
+            --text-dark: #2d3748;
+            --text-light: #f8fafc;
+            --card-bg: #ffffff;
+            --bg-light: #f1f5f9;
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+
+        /* Header/Hero Section */
+        .header {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            opacity: 0.95;
+            z-index: -2;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 20%);
+            z-index: -1;
+            animation: pulse 15s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0c326b 0%, #1a784e 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-light);
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: var(--card-bg);
+            box-shadow: var(--shadow-sm);
+            padding: 0.75rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-container {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary-gradient);
+            transition: var(--transition);
+            border-radius: 3px;
+        }
+
+        .nav-link:hover {
+            color: #1a5fb4;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #1a5fb4;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Home Section */
+        .welcome-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .cta {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1a5fb4;
+            margin-bottom: 3rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            background: var(--primary-gradient);
+            color: var(--text-light);
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #1a5fb4;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Content Reveal */
+        .content-hidden {
+            display: none;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 0 0 var(--radius) var(--radius);
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 500px; }
+        }
+
+        /* Exams Section */
+        .sub-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .sub-tab {
+            padding: 0.75rem 1.5rem;
+            background: var(--card-bg);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sub-tab.active {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .exam-content {
+            display: none;
+        }
+
+        .exam-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-gradient);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .nav-list {
+                gap: 1.5rem;
+            }
+            
+            .features, .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .sub-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .nav-list {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .navbar {
+                padding: 0.5rem;
+            }
+            
+            .nav-container {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Hero Section -->
+    <header class="header">
+        <h1 class="title">page-Abdulwahid Hussein</h1>
+        <p class="subtitle">Your gateway to academic excellence and success</p>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                <li class="nav-item"><a href="#short-notes" class="nav-link" data-section="short-notes">Short Notes</a></li>
+                <li class="nav-item"><a href="#materials" class="nav-link" data-section="materials">Materials</a></li>
+                <li class="nav-item"><a href="#exams" class="nav-link" data-section="exams">Exams</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <h2 class="section-title">Welcome to Our Educational Platform</h2>
+            <p class="welcome-text">An educational platform that supports students for free by sharing concise notes, quality materials and exam practice resources. Our mission is to make quality education accessible to everyone, everywhere.</p>
+            <p class="cta">Start your journey to academic excellence today!</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Comprehensive Notes</h3>
+                    <p>Well-organized short notes for quick revision and better understanding of complex topics.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3>Quality Materials</h3>
+                    <p>Download high-quality study materials curated by experienced educators.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Exam Preparation</h3>
+                    <p>Practice questions and online exams to test your knowledge and readiness.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Short Notes Section -->
+        <section id="short-notes" class="section">
+            <h2 class="section-title">Short Notes</h2>
+            <p class="welcome-text">Access concise and well-organized notes for various subjects. Perfect for quick revision and mastering key concepts.</p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header">Mathematics</div>
+                    <div class="card-body">
+                        <div class="card-icon"><i class="fas fa-calculator"></i></div>
+                        <p>Formulas, theorems, and problem-solving techniques</p>
+                        <button class="btn open-btn" data-content="math-content">Open</button>
+                        <div id="math-content" class="content-hidden">
+                            <h4>Mathematics Notes</h4>
+                            <ul>
+                                <li><a href="#">Algebra Formulas</a></li>
+                                <li><a href="#">Calculus Summary</a></li>
+                                <li><a href="#">Geometry Theorems</a></li>
+                                <li><a href="#">Statistics Quick Guide</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">Science</div>
+                    <div class="card-body">
+                        <div class="card-icon"><i class="fas fa-flask"></i></div>
+                        <p>Physics, Chemistry, and Biology key concepts</p>
+                        <button class="btn open-btn" data-content="science-content">Open</button>
+                        <div id="science-content" class="content-hidden">
+                            <h4>Science Notes</h4>
+                            <ul>
+                                <li><a href="#">Physics Laws</a></li>
+                                <li><a href="#">Chemical Reactions</a></li>
+                                <li><a href="#">Biology Concepts</a></li>
+                                <li><a href="#">Scientific Methods</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">Languages</div>
+                    <div class="card-body">
+                        <div class="card-icon"><i class="fas fa-language"></i></div>
+                        <p>Grammar, vocabulary, and literature notes</p>
+                        <button class="btn open-btn" data-content="lang-content">Open</button>
+                        <div id="lang-content" class="content-hidden">
+                            <h4>Language Notes</h4>
+                            <ul>
+                                <li><a href="#">Grammar Rules</a></li>
+                                <li><a href="#">Vocabulary Building</a></li>
+                                <li><a href="#">Literature Summaries</a></li>
+                                <li><a href="#">Writing Techniques</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">Social Studies</div>
+                    <div class="card-body">
+                        <div class="card-icon"><i class="fas fa-globe"></i></div>
+                        <p>History, Geography, and Civics summaries</p>
+                        <button class="btn open-btn" data-content="social-content">Open</button>
+                        <div id="social-content" class="content-hidden">
+                            <h4>Social Studies Notes</h4>
+                            <ul>
+                                <li><a href="#">Historical Events</a></li>
+                                <li><a href="#">Geographical Concepts</a></li>
+                                <li><a href="#">Civics and Government</a></li>
+                                <li><a href="#">Cultural Studies</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Materials Section -->
+        <section id="materials" class="section">
+            <h2 class="section-title">Study Materials</h2>
+            <p class="welcome-text">Download comprehensive study materials to enhance your learning experience and deepen your understanding of various subjects.</p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header">Textbooks</div>
+                    <div class="card-body">
+                        <div class="card-icon"><i class="fas fa-book-open"></i></div>
+                        <p>Recommended textbooks and reference materials</p>
+                        <button class="btn open-btn" data-content="textbooks-content">Open</button>
+                        <div id="textbooks-content" class="content-hidden">
+                            <h4>Textbooks Collection</h4>
+                            <ul>
+                                <li><a href="#">Mathematics Textbooks</a></li>
+                                <li><a href="#">Science References</a></li>
+                                <li><a href="#">Language Guides</a></li>
+                                <li><a href="#">Social Studies Resources</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">Worksheets</div>
+                    <div class="card-body">
+                        <div class="card-icon"><i class="fas fa-tasks"></i></div>
+                        <p>Practice worksheets with answer keys</p>
+                        <button class="btn open-btn" data-content="worksheets-content">Open</button>
+                        <div id="worksheets-content" class="content-hidden">
+                            <h4>Practice Worksheets</h4>
+                            <ul>
+                                <li><a href="#">Math Problems</a></li>
+                                <li><a href="#">Science Experiments</a></li>
+                                <li><a href="#">Language Exercises</a></li>
+                                <li><a href="#">Social Studies Questions</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">Video Lectures</div>
+                    <div class="card-body">
+                        <div class="card-icon"><i class="fas fa-video"></i></div>
+                        <p>Recorded lectures and explanations</p>
+                        <button class="btn open-btn" data-content="videos-content">Open</button>
+                        <div id="videos-content" class="content-hidden">
+                            <h4>Video Lectures</h4>
+                            <ul>
+                                <li><a href="#">Mathematics Tutorials</a></li>
+                                <li><a href="#">Science Demonstrations</a></li>
+                                <li><a href="#">Language Lessons</a></li>
+                                <li><a href="#">Social Studies Documentaries</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">Reference Guides</div>
+                    <div class="card-body">
+                        <div class="card-icon"><i class="fas fa-file-alt"></i></div>
+                        <p>Quick reference and study guides</p>
+                        <button class="btn open-btn" data-content="guides-content">Open</button>
+                        <div id="guides-content" class="content-hidden">
+                            <h4>Reference Guides</h4>
+                            <ul>
+                                <li><a href="#">Formula Sheets</a></li>
+                                <li><a href="#">Concept Maps</a></li>
+                                <li><a href="#">Timelines</a></li>
+                                <li><a href="#">Summary Sheets</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exams Section -->
+        <section id="exams" class="section">
+            <h2 class="section-title">Exams Preparation</h2>
+            <p class="welcome-text">Test your knowledge and prepare for exams with our practice questions and simulated online exams.</p>
+            
+            <div class="sub-tabs">
+                <div class="sub-tab active" data-tab="practice">Practice Questions</div>
+                <div class="sub-tab" data-tab="online">Online Exam</div>
+            </div>
+            
+            <div id="practice" class="exam-content active">
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">Mathematics</div>
+                        <div class="card-body">
+                            <div class="card-icon"><i class="fas fa-calculator"></i></div>
+                            <p>Practice problems with step-by-step solutions</p>
+                            <button class="btn open-btn" data-content="math-practice-content">Open</button>
+                            <div id="math-practice-content" class="content-hidden">
+                                <h4>Mathematics Practice</h4>
+                                <ul>
+                                    <li><a href="#">Algebra Problems</a></li>
+                                    <li><a href="#">Calculus Exercises</a></li>
+                                    <li><a href="#">Geometry Questions</a></li>
+                                    <li><a href="#">Statistics Practice</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">Science</div>
+                        <div class="card-body">
+                            <div class="card-icon"><i class="fas fa-flask"></i></div>
+                            <p>Multiple choice and theoretical questions</p>
+                            <button class="btn open-btn" data-content="science-practice-content">Open</button>
+                            <div id="science-practice-content" class="content-hidden">
+                                <h4>Science Practice</h4>
+                                <ul>
+                                    <li><a href="#">Physics Questions</a></li>
+                                    <li><a href="#">Chemistry Problems</a></li>
+                                    <li><a href="#">Biology Exercises</a></li>
+                                    <li><a href="#">Scientific Reasoning</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="online" class="exam-content">
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">Full Mock Exam</div>
+                        <div class="card-body">
+                            <div class="card-icon"><i class="fas fa-clock"></i></div>
+                            <p>Timed full-length exam simulation</p>
+                            <button class="btn open-btn" data-content="mock-exam-content">Start Exam</button>
+                            <div id="mock-exam-content" class="content-hidden">
+                                <h4>Mock Exam Instructions</h4>
+                                <p>This is a timed exam that will take 120 minutes. It contains 100 questions across all subjects.</p>
+                                <p>Click the button below to begin when you're ready.</p>
+                                <button class="btn">Begin Exam</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">Subject-specific Exam</div>
+                        <div class="card-body">
+                            <div class="card-icon"><i class="fas fa-book"></i></div>
+                            <p>Focus on a single subject</p>
+                            <button class="btn open-btn" data-content="subject-exam-content">Select Subject</button>
+                            <div id="subject-exam-content" class="content-hidden">
+                                <h4>Select a Subject</h4>
+                                <ul>
+                                    <li><a href="#">Mathematics Exam</a></li>
+                                    <li><a href="#">Science Exam</a></li>
+                                    <li><a href="#">Language Exam</a></li>
+                                    <li><a href="#">Social Studies Exam</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; Abdulwahid Hussein <span id="current-year"></span>. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.section');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all links and sections
+                navLinks.forEach(navLink => navLink.classList.remove('active'));
+                sections.forEach(section => section.classList.remove('active'));
+                
+                // Add active class to clicked link and corresponding section
+                link.classList.add('active');
+                const sectionId = link.getAttribute('data-section');
+                document.getElementById(sectionId).classList.add('active');
+                
+                // Scroll to top of section
+                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Open buttons functionality
+        const openButtons = document.querySelectorAll('.open-btn');
+        
+        openButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const contentId = button.getAttribute('data-content');
+                const content = document.getElementById(contentId);
+                
+                // Toggle content visibility
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                } else {
+                    // Close any other open content
+                    document.querySelectorAll('.content-hidden').forEach(item => {
+                        if (item.id !== contentId) {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    content.style.display = 'block';
+                }
+            });
+        });
+
+        // Sub-tabs functionality in Exams section
+        const subTabs = document.querySelectorAll('.sub-tab');
+        const examContents = document.querySelectorAll('.exam-content');
+        
+        subTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                subTabs.forEach(t => t.classList.remove('active'));
+                examContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
